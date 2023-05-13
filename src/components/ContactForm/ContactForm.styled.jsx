@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import { BsFillPersonFill } from 'react-icons/bs';
+import { GiSmartphone } from 'react-icons/gi';
 import { Form as FormikForm, ErrorMessage as FormikErrorMessage } from 'formik';
 
 export const Form = styled(FormikForm)`
@@ -25,6 +27,20 @@ export const FormLabel = styled.label`
 
 export const Wrapper = styled.div`
   position: relative;
+`;
+
+export const PersonIcon = styled(BsFillPersonFill)`
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+`;
+
+export const PhoneIcon = styled(GiSmartphone)`
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
 `;
 
 export const Input = styled.input`
