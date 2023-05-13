@@ -3,7 +3,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import * as Yup from 'yup';
 import 'yup-phone-lite';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
+import { addContact } from 'redux/operations';
 import {
   Form,
   FormField,
@@ -22,7 +22,7 @@ const ContactSchema = Yup.object({
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Name is required!'),
-  number: Yup.string().phone('UA').required('Phone number is required!'),
+  phone: Yup.string().phone('UA').required('Phone number is required!'),
 });
 export const ContactForm = () => {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ export const ContactForm = () => {
       <Formik
         initialValues={{
           name: '',
-          number: '',
+          phone: '',
         }}
         validationSchema={ContactSchema}
         onSubmit={(values, actions) => {
@@ -46,7 +46,7 @@ export const ContactForm = () => {
             );
             actions.resetForm();
           } else {
-            dispatch(addContact(values.name, values.number));
+            dispatch(addContact(values.name, values.phone));
             actions.resetForm();
           }
         }}
@@ -75,7 +75,7 @@ export const ContactForm = () => {
           <FormField>
             <FormLabel>Number</FormLabel>
             <Wrapper>
-              <Field name="number">
+              <Field name="phone">
                 {({ field }) => {
                   return <Input {...field} placeholder="+38-0XX-XXX-XX-XX" />;
                 }}
@@ -89,7 +89,7 @@ export const ContactForm = () => {
                 }}
               />
             </Wrapper>
-            <ErrorMessage name="number" component="div" />
+            <ErrorMessage name="phone" component="div" />
           </FormField>
 
           <FormButton type="submit">Add contact</FormButton>
