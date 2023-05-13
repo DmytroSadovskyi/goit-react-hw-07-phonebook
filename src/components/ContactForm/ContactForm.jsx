@@ -53,11 +53,11 @@ export const ContactForm = () => {
       >
         <Form>
           <FormField>
-            <FormLabel>Name</FormLabel>
+            <FormLabel htmlFor="name">Name</FormLabel>
             <Wrapper>
               <Field name="name">
                 {({ field }) => {
-                  return <Input {...field} placeholder="your name" />;
+                  return <Input {...field} placeholder="your name" id="name" />;
                 }}
               </Field>
 
@@ -73,11 +73,17 @@ export const ContactForm = () => {
             <ErrorMessage name="name" component="div" />
           </FormField>
           <FormField>
-            <FormLabel>Number</FormLabel>
+            <FormLabel htmlFor="number">Number</FormLabel>
             <Wrapper>
               <Field name="phone">
                 {({ field }) => {
-                  return <Input {...field} placeholder="+38-0XX-XXX-XX-XX" />;
+                  return (
+                    <Input
+                      {...field}
+                      placeholder="+38-0XX-XXX-XX-XX"
+                      id="number"
+                    />
+                  );
                 }}
               </Field>
               <GiSmartphone
