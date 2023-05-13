@@ -12,9 +12,9 @@ import {
   FormLabel,
   ErrorMessage,
   FormButton,
+  PersonIcon,
+  PhoneIcon,
 } from './ContactForm.styled';
-import { BsFillPersonFill } from 'react-icons/bs';
-import { GiSmartphone } from 'react-icons/gi';
 import { getContacts } from 'redux/selectors';
 
 const ContactSchema = Yup.object({
@@ -60,15 +60,7 @@ export const ContactForm = () => {
                   return <Input {...field} placeholder="your name" id="name" />;
                 }}
               </Field>
-
-              <BsFillPersonFill
-                style={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '10px',
-                  transform: 'translateY(-50%)',
-                }}
-              />
+              <PersonIcon />
             </Wrapper>
             <ErrorMessage name="name" component="div" />
           </FormField>
@@ -86,14 +78,7 @@ export const ContactForm = () => {
                   );
                 }}
               </Field>
-              <GiSmartphone
-                style={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '10px',
-                  transform: 'translateY(-50%)',
-                }}
-              />
+              <PhoneIcon />
             </Wrapper>
             <ErrorMessage name="phone" component="div" />
           </FormField>
