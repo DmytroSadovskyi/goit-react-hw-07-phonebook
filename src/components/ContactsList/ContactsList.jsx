@@ -2,7 +2,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 import { ContactItem } from './ContactsList.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilter, getContacts } from 'redux/selectors';
-import { deleteContact } from 'redux/contactsSlice';
+import { deleteContact } from 'redux/operations';
 
 const ContactsList = () => {
   const filter = useSelector(getFilter);
@@ -16,10 +16,10 @@ const ContactsList = () => {
 
   return (
     <ul>
-      {visibleContacts?.map(({ name, number, id }) => (
+      {visibleContacts?.map(({ name, phone, id }) => (
         <ContactItem key={id}>
           <span>{name}</span>
-          <span>{number}</span>
+          <span>{phone}</span>
 
           <FaTrashAlt
             style={{
