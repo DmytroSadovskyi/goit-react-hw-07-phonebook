@@ -3,6 +3,7 @@ import Container from './Container';
 import ContactForm from './ContactForm/ContactForm';
 import ContactsList from './ContactsList';
 import Filter from './Filter';
+import Loader from './Loader';
 import { MainTitle, SecondTitle } from './Container/Container.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -22,8 +23,8 @@ export const App = () => {
     <Container>
       <MainTitle>Phonebook</MainTitle>
       <ContactForm />
-      {isLoading && !error && <b>Request in progress...</b>}
       <SecondTitle>Contacts</SecondTitle>
+      {isLoading && !error && <Loader />}
       <Filter />
       <ContactsList />
     </Container>
