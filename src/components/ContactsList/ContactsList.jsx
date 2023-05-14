@@ -15,8 +15,20 @@ const ContactsList = () => {
       {contacts?.map(({ name, phone, id }) => {
         return (
           <ContactItem key={id}>
-            <span>{name}</span>
-            <span>{phone}</span>
+            <span
+              style={{
+                flexGrow: '2',
+              }}
+            >
+              {name}
+            </span>
+            <span
+              style={{
+                marginRight: '10px',
+              }}
+            >
+              {phone}
+            </span>
 
             <FaTrashAlt
               style={{
