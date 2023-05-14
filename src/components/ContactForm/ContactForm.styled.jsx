@@ -27,6 +27,12 @@ export const FormLabel = styled.label`
 
 export const Wrapper = styled.div`
   position: relative;
+  &:focus-within {
+    svg {
+      transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+      fill: yellowgreen;
+    }
+  }
 `;
 
 export const PersonIcon = styled(BsFillPersonFill)`
@@ -48,7 +54,12 @@ export const Input = styled.input`
   width: 88%;
   padding-left: 30px;
   border: 1px solid rgba(33, 33, 33, 0.2);
+  outline: none;
   border-radius: 5px;
+  &:focus {
+    border-color: yellowgreen;
+  }
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const ErrorMessage = styled(FormikErrorMessage)`
