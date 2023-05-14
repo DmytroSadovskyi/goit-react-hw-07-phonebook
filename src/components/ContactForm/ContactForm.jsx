@@ -15,7 +15,7 @@ import {
   PersonIcon,
   PhoneIcon,
 } from './ContactForm.styled';
-import { getContacts } from 'redux/selectors';
+import { selectContacts } from 'redux/selectors';
 
 const ContactSchema = Yup.object({
   name: Yup.string()
@@ -26,7 +26,7 @@ const ContactSchema = Yup.object({
 });
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
   return (
     <>
       <Toaster />
@@ -36,7 +36,7 @@ export const ContactForm = () => {
           phone: '',
         }}
         validationSchema={ContactSchema}
-        onSubmit={(values, actions) => {
+        onSubmit={({ ...values }, actions) => {
           const existingContact = contacts.find(
             contact => contact.name.toLowerCase() === values.name.toLowerCase()
           );
@@ -46,7 +46,8 @@ export const ContactForm = () => {
             );
             actions.resetForm();
           } else {
-            dispatch(addContact(values.name, values.phone));
+            dispatch(addContact({ ...values }));
+
             actions.resetForm();
           }
         }}
