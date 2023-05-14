@@ -31,6 +31,7 @@ const ContactsList = () => {
             </span>
 
             <FaTrashAlt
+              aria-label="delete-icon"
               style={{
                 cursor: 'pointer',
                 color: 'crimson',
