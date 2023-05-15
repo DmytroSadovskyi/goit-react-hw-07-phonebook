@@ -24,8 +24,8 @@ export const App = () => {
       <MainTitle>Phonebook</MainTitle>
       <ContactForm />
       <SecondTitle>Contacts</SecondTitle>
-      {isLoading && !error && <Loader />}
       <Filter />
+      {isLoading && !error && <Loader />}
       <ContactsList />
     </Container>
   );
