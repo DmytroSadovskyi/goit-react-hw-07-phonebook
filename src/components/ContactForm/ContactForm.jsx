@@ -1,4 +1,4 @@
-import { Formik, Field } from 'formik';
+import { Formik, Field, getIn } from 'formik';
 import toast, { Toaster } from 'react-hot-toast';
 import * as Yup from 'yup';
 import 'yup-phone-lite';
@@ -27,6 +27,16 @@ const ContactSchema = Yup.object({
 export const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
+
+  function getStyles(errors, fieldName) {
+    if (getIn(errors, fieldName)) {
+      return {
+        borderColor: 'red',
+      };
+    }
+    return {};
+  }
+
   return (
     <>
       <Toaster />
@@ -52,40 +62,48 @@ export const ContactForm = () => {
           }
         }}
       >
-        <Form>
-          <FormField>
-            <FormLabel htmlFor="name">Name</FormLabel>
-            <Wrapper>
-              <Field name="name">
-                {({ field }) => {
-                  return <Input {...field} placeholder="your name" id="name" />;
-                }}
-              </Field>
-              <PersonIcon />
-            </Wrapper>
-            <ErrorMessage name="name" component="div" />
-          </FormField>
-          <FormField>
-            <FormLabel htmlFor="number">Number</FormLabel>
-            <Wrapper>
-              <Field name="phone">
-                {({ field }) => {
-                  return (
+        {formikProps => (
+          <Form>
+            <FormField>
+              <FormLabel htmlFor="name">Name</FormLabel>
+              <Wrapper>
+                <Field
+                  name="name"
+                  render={({ field }) => (
+                    <Input
+                      {...field}
+                      placeholder="your name"
+                      id="name"
+                      style={getStyles(formikProps.errors, 'name')}
+                    />
+                  )}
+                />
+                <PersonIcon />
+              </Wrapper>
+              <ErrorMessage name="name" component="div" />
+            </FormField>
+            <FormField>
+              <FormLabel htmlFor="number">Number</FormLabel>
+              <Wrapper>
+                <Field
+                  name="phone"
+                  render={({ field }) => (
                     <Input
                       {...field}
                       placeholder="+38-0XX-XXX-XX-XX"
                       id="number"
+                      style={getStyles(formikProps.errors, 'phone')}
                     />
-                  );
-                }}
-              </Field>
-              <PhoneIcon />
-            </Wrapper>
-            <ErrorMessage name="phone" component="div" />
-          </FormField>
+                  )}
+                />
+                <PhoneIcon />
+              </Wrapper>
+              <ErrorMessage name="phone" component="div" />
+            </FormField>
 
-          <FormButton type="submit">Add contact</FormButton>
-        </Form>
+            <FormButton type="submit">Add contact</FormButton>
+          </Form>
+        )}
       </Formik>
     </>
   );
