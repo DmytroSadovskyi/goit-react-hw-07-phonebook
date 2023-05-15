@@ -28,8 +28,8 @@ export const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
 
-  function getStyles(errors, fieldName) {
-    if (getIn(errors, fieldName)) {
+  function getStyles(errors, touched, fieldName) {
+    if (getIn(errors, fieldName) && getIn(touched, fieldName)) {
       return {
         borderColor: 'red',
       };
@@ -74,7 +74,11 @@ export const ContactForm = () => {
                       {...field}
                       placeholder="your name"
                       id="name"
-                      style={getStyles(formikProps.errors, 'name')}
+                      style={getStyles(
+                        formikProps.errors,
+                        formikProps.touched,
+                        'name'
+                      )}
                     />
                   )}
                 />
@@ -92,7 +96,11 @@ export const ContactForm = () => {
                       {...field}
                       placeholder="+38-0XX-XXX-XX-XX"
                       id="number"
-                      style={getStyles(formikProps.errors, 'phone')}
+                      style={getStyles(
+                        formikProps.errors,
+                        formikProps.touched,
+                        'phone'
+                      )}
                     />
                   )}
                 />
